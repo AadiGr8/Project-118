@@ -30,14 +30,14 @@ def predict():
 
 
 # Creating an API to save the review, user clicks on the Save button
-@app.route('/predict1' , methods = ['POST'])
+@app.route('/save' , methods = ['POST'])
 def save():
 
     # extracting date , product name , review , sentiment associated from the JSOn data
-    date = request.json.get('')
-    product = request.json.get('')
-    review = request.json.get('')
-    sentiment = request.json.get('')
+    date = request.json.get('date')
+    product = request.json.get('product')
+    review = request.json.get('review')
+    sentiment = request.json.get('sentiment')
 
     # creating a final variable seperated by commas
     data_entry = date + "," + product + "," + review + "," + sentiment
@@ -46,7 +46,7 @@ def save():
     file_handler=open('./static/assets/datafiles/updated_product_dataset.csv','a')
 
     # Log the data in the file
-    file_handler.write(entry+'\n')
+    file_handler.write(data_entry+'\n')
 
     # return a success message
     return jsonify({'status' : 'success' , 
